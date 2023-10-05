@@ -1,0 +1,205 @@
+@import '../helpers/variabels';
+@import '../helpers/mixins';
+
+:root {
+    --tr-3: 0.3s;
+}
+
+body {
+    // font-family: 'Kanit', sans-serif;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+header {
+    position: relative;
+    padding: 15px 0;
+
+    >.container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        overflow: hidden;
+
+        @include maxSmall {
+            & {
+                flex-wrap: wrap;
+            }
+        }
+    }
+
+    &::after {
+        content: "";
+        width: 60%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-color: $blackColor;
+        z-index: -1;
+    }
+
+    &::before {
+        content: "";
+        width: 40%;
+        height: 100%;
+        position: absolute;
+        right: 0;
+        top: 0;
+        background-color: $blueColor;
+        z-index: -1;
+
+        @include maxSmall {
+            background-color: $blackColor;
+        }
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+
+
+
+        .icon {
+            width: 40px;
+            height: 45px;
+
+            img {
+                width: 100%;
+            }
+        }
+
+        .name {
+            color: white;
+            margin-left: 10px;
+            font-size: 33px;
+            font-weight: bold;
+        }
+    }
+
+    .links {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex: 1;
+        padding: 0 20px;
+        transform: translateX(2000px);
+        transition: $tr-3;
+
+        @include maxSmall {
+            & {
+                order: 1;
+                flex-basis: 100%;
+                margin-top: 20px;
+
+            }
+        }
+
+        @media (max-width:420px) {
+            & {
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+            }
+        }
+
+        &.active {
+            transform: translateX(0);
+        }
+
+        .pages {
+            @media (max-width:420px) {
+                & {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+            }
+
+            >a {
+                color: white;
+                font-size: 16px;
+                text-decoration: none;
+                margin-right: 10px;
+                font-weight: 600;
+            }
+        }
+
+        .more {
+            display: flex;
+            align-items: center;
+
+            >span {
+                color: white;
+                font-weight: 600;
+                font-size: 16px;
+                cursor: pointer;
+            }
+
+            >i {
+                margin: 0 10px;
+                font-size: 16px;
+                color: white;
+            }
+        }
+    }
+
+    .minu {
+        width: 40px;
+        height: 40px;
+        position: relative;
+        cursor: pointer;
+
+        span:nth-child(1) {
+            width: 38px;
+            display: block;
+            height: 4px;
+            background-color: white;
+            position: relative;
+            top: 7px;
+            border-radius: 3px;
+        }
+
+        span:nth-child(2) {
+            width: 20px;
+            display: block;
+            height: 4px;
+            background-color: white;
+            position: relative;
+            right: -17px;
+            top: 17px;
+            border-radius: 3px;
+        }
+
+        span:nth-child(3) {
+            width: 38px;
+            display: block;
+            height: 4px;
+            background-color: white;
+            position: relative;
+            top: 27px;
+            border-radius: 3px;
+        }
+
+        &.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            span:nth-child(1) {
+                top: 2px;
+                transform: rotate(45deg);
+            }
+
+            span:nth-child(2) {
+                display: none;
+            }
+
+            span:nth-child(3) {
+                top: -2px;
+                transform: rotate(-45deg);
+            }
+        }
+    }
+}
